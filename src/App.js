@@ -42,6 +42,13 @@ class App extends React.Component{
 
       ]
     }
+    this.handleRefresh = this.handleRefresh.bind(this);
+  }
+
+  handleRefresh(valueChangeTiker){
+   const coin = this.state.coinData.find(({tiker}) => tiker === valueChangeTiker);
+   console.log(coin)
+
   }
 
   render() {
@@ -49,7 +56,7 @@ class App extends React.Component{
       <Div>
         <Header />
         <AccountBalance  amount = {this.state.balance}/>
-        <CoinList coinData = {this.state.coinData}/>
+        <CoinList coinData = {this.state.coinData} handleRefresh={this.handleRefresh}/>
       </Div>
     );
 
