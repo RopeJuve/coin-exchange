@@ -1,38 +1,60 @@
 
 import React from 'react';
-import Logo from './logo.svg';
-import './App.css';
-import Coin from '../src/components/coin/Coin.jsx';
-import AccountBalance from '../src/components/AccountBalance/AccountBalance';
+import AccountBalance from './components/AccountBalance/AccountBalance';
+import CoinList from './components/CoinList/CoinList'
+import Header from './components/Heder/Header'
+import styled from 'styled-components'
 
-function App() {
-  return (
-    <div className="App">
-      
-      <header className="App-header">
-      <img src={Logo} alt="React logo" className="App-logo"/>
-        <p>
-          <h1 className="App-title">Coin exchange</h1>
-        </p>
-      </header>
-      <AccountBalance  amount = {10000}/>
-      <table className="coin-table">
-        <thead>
-          <tr>
-            <th>Name: </th>
-            <th>Tiker: </th>
-            <th>Price: </th>
-          </tr>
-        </thead>
-        <tbody>
-          <Coin name="Bitcoin" tiker="BTC" price={50000.00} />
-          <Coin name="Ethereum" tiker="ETH" price={4100.00} />
-          <Coin name="Thether" tiker="USDT" price={1.00} />
-          <Coin name="Riple" tiker="XPR" price={0.2} />
-        </tbody>
-      </table>
-    </div>
-  );
+const Div = styled.div`
+ text-align: center;
+ background-color: rgb(34, 46, 99);
+ color: #cccccc;
+`;
+
+class App extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state = {
+      balance: 10000,
+      coinData:[
+        {
+          name:"Bitcoin",
+          tiker: "BTC",
+          price: 50000.00
+        },
+        {
+          name:"Ethereum",
+          tiker: "ETH",
+          price: 4100.00
+        },
+        {
+          name:"Tether",
+          tiker: "USDT",
+          price: 1.00
+        },
+        {
+          name:"Ripple",
+          tiker: "XPR",
+          price: 0.2
+        }
+
+
+      ]
+    }
+  }
+
+  render() {
+    return (
+      <Div>
+        <Header />
+        <AccountBalance  amount = {this.state.balance}/>
+        <CoinList coinData = {this.state.coinData}/>
+      </Div>
+    );
+
+  }
+  
 }
 
 export default App;
