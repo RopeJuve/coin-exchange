@@ -16,26 +16,31 @@ class App extends React.Component{
   constructor(props){
     super(props)
     this.state = {
+      showBalance: true,
       balance: 10000,
       coinData:[
         {
           name:"Bitcoin",
           tiker: "BTC",
+          balance: 0.5,
           price: 50000.00
         },
         {
           name:"Ethereum",
           tiker: "ETH",
+          balance: 32.0,
           price: 4100.00
         },
         {
           name:"Tether",
           tiker: "USDT",
+          balance: 0,
           price: 1.00
         },
         {
           name:"Ripple",
           tiker: "XPR",
+          balance: 100,
           price: 0.2
         }
 
@@ -43,10 +48,11 @@ class App extends React.Component{
       ]
     }
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.hideBalance = this.hideBalance.bind(this);
   }
 
   handleRefresh(valueChangeTiker){
-   const newCoinData = this.state.coinData.map(function({name,tiker,price})
+   const newCoinData = this.state.coinData.map(function({name,tiker,price,balance})
    {
      let newPrice = price;
      if(valueChangeTiker === tiker){
@@ -56,7 +62,8 @@ class App extends React.Component{
      return {
        name,
        tiker,
-       price: newPrice
+       price: newPrice,
+       balance
      }
    });
 
@@ -64,12 +71,16 @@ class App extends React.Component{
 
   }
 
+  hideBalance(){
+    this.setState({showBalance:!this.state.showBalance,});
+  }
+
   render() {
     return (
       <Div>
         <Header />
-        <AccountBalance  amount = {this.state.balance}/>
-        <CoinList coinData = {this.state.coinData} handleRefresh={this.handleRefresh}/>
+        <AccountBalance  amount = {this.state.balance} showBalance={this.state.showBalance} hideBalance={this.hideBalance}/>
+        <CoinList coinData = {this.state.coinData} handleRefresh={this.handleRefresh} showBalance={this.state.showBalance}/>
       </Div>
     );
 
