@@ -20,7 +20,7 @@ export default class Coin extends Component {
     }
 
     render() {
-        let balance = this.props.showBalance ? <Td>{this.props.balance}</Td> : null;
+        let balance = this.props.showBalance ? <Td>{this.props.balance}</Td> : <Td>********</Td>;
         return (
             <tr>
                 <Td>{this.props.name}</Td>

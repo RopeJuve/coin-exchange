@@ -25,7 +25,7 @@ export default class AccountBalance extends Component {
         const buttonText = this.props.showBalance ? 'Hide Balance' : 'Show Balance';
         let balance = this.props.showBalance ?
             <span>Balance: ${this.props.amount}</span>
-            : '*********';
+            : 'Balance: *********';
 
         return (
             <Section>

@@ -11,7 +11,7 @@ font-size: 1.8rem;
 
 export default class CoinList extends Component {
     render() {
-        let balance = this.props.showBalance ? <th>Balance:</th> : null;
+        
         return (
             <Table>
                 <thead>
@@ -19,7 +19,7 @@ export default class CoinList extends Component {
                         <th>Name: </th>
                         <th>Tiker: </th>
                         <th>Price: </th>
-                        {balance}
+                        <th>Balance:</th>
                         <th>Actions:</th>
                         
                     </tr>
