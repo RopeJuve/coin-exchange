@@ -4,19 +4,21 @@ import AccountBalance from './components/AccountBalance/AccountBalance';
 import CoinList from './components/CoinList/CoinList'
 import Header from './components/Heder/Header'
 import styled from 'styled-components'
-
+import axios from 'axios'
 const Div = styled.div`
  text-align: center;
  background-color: rgb(34, 46, 99);
  color: #cccccc;
 `;
 
+const COIN_COINT = 10;
+
 class App extends React.Component{
   state = {
     showBalance: true,
     balance: 10000,
     coinData:[
-      {
+     /* {
         name:"Bitcoin",
         tiker: "BTC",
         balance: 0.5,
@@ -40,10 +42,31 @@ class App extends React.Component{
         balance: 100,
         price: 0.2
       }
-
+*/
 
     ]
   }
+  
+  componentDidMount = async () => {
+   const response = await axios.get('https://api.coinpaprika.com/v1/coins')     
+   const coinIds = response.data.slice(0,COIN_COINT).map(coin=> coin.id);
+   const tikerUrl = 'https://api.coinpaprika.com/v1/ticker/';
+   const promises = coinIds.map(id => axios.get(tikerUrl + id)); 
+   const coinData = await Promise.all(promises);
+   const coinPriseData = coinData.map(function(response){
+    const coin = response.data;
+     return{
+       key: coin.id,
+       name: coin.name,
+       tiker: coin.symbol,
+       balance: 0,
+       price: parseFloat(Number(coin.price_usd).toFixed(4)) ,
+     }
+   })
+    this.setState({coinData: coinPriseData});
+  
+  }
+
   handleRefresh = (valueChangeTiker) =>{
    const newCoinData = this.state.coinData.map(function({name,tiker,price,balance})
    {
