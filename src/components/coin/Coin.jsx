@@ -11,7 +11,7 @@ export default class Coin extends Component {
   
     handleClick = (event) => {
         event.preventDefault();
-        this.props.handleRefresh(this.props.tiker);
+        this.props.handleRefresh(this.props.tikerId);
 
     }
 

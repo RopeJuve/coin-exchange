@@ -33,7 +33,8 @@ export default class CoinList extends Component {
                             name={coin.name} 
                             balance={coin.balance}
                             tiker={coin.tiker} 
-                            price={coin.price} />
+                            price={coin.price} 
+                            tikerId = {coin.key}/>
                         )
                     }
                 </tbody>
