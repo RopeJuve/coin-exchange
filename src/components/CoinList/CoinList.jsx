@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Coin from '../coin/Coin'
 import styled from 'styled-components'
 
@@ -9,36 +9,36 @@ display: inline-block;
 font-size: 1.8rem;
 `;
 
-export default class CoinList extends Component {
-    render() {
-        
-        return (
-            <Table>
-                <thead>
-                    <tr>
-                        <th>Name: </th>
-                        <th>Tiker: </th>
-                        <th>Price: </th>
-                        <th>Balance:</th>
-                        <th>Actions:</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.props.coinData.map(coin => <Coin 
-                            key={coin.key}
-                            handleRefresh={this.props.handleRefresh}
-                            showBalance={this.props.showBalance}
-                            name={coin.name} 
-                            balance={coin.balance}
-                            tiker={coin.tiker} 
-                            price={coin.price} 
-                            tikerId = {coin.key}/>
-                        )
-                    }
-                </tbody>
-            </Table>
-        )
-    }
+export default function CoinList(props) {
+
+
+    return (
+        <Table>
+            <thead>
+                <tr>
+                    <th>Name: </th>
+                    <th>Tiker: </th>
+                    <th>Price: </th>
+                    <th>Balance:</th>
+                    <th>Actions:</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    props.coinData.map(coin => <Coin
+                        key={coin.key}
+                        handleRefresh={props.handleRefresh}
+                        showBalance={props.showBalance}
+                        name={coin.name}
+                        balance={coin.balance}
+                        tiker={coin.tiker}
+                        price={coin.price}
+                        tikerId={coin.key} />
+                    )
+                }
+            </tbody>
+        </Table>
+    )
+
 }

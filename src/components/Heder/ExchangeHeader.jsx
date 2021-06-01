@@ -23,14 +23,14 @@ color: white;
 `;
 
 
-export default class Header extends Component {
+export default class ExchangeHeader extends Component {
     render() {
         return (
             <Header1>
         <Img src={logo} alt="React logo"/>
-          <p>
+          
             <H1>Coin Exchange</H1>
-          </p>
+    
         </Header1>
         )
     }
