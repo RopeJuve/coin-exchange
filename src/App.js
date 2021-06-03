@@ -72,19 +72,20 @@ function App(props) {
 
   const hideBalance = () => {
     setShowBalance(oldValue => !oldValue);
+
   }
 
-
-  return (
-    <Div>
-      <ExchangeHeader />
-      <AccountBalance amount={balance} showBalance={showBalance} hideBalance={hideBalance} />
-      <CoinList coinData={coinData} handleRefresh={handleRefresh} showBalance={showBalance} />
-    </Div>
-  );
-
+    return (
+      <Div>
+        <ExchangeHeader />
+        <AccountBalance amount={balance} showBalance={showBalance} hideBalance={hideBalance} />
+        <CoinList coinData={coinData} handleRefresh={handleRefresh} showBalance={showBalance} />
+      </Div>
+    );
 
 
-}
+
+  }
 
 export default App;
+
