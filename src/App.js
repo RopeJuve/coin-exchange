@@ -75,11 +75,20 @@ function App(props) {
 
   }
 
+  const addBalance = () => {
+    setBalance(oldValue => oldValue + 1200);
+  }
+
     return (
       <Div>
         <ExchangeHeader />
-        <AccountBalance amount={balance} showBalance={showBalance} hideBalance={hideBalance} />
+        <AccountBalance 
+        amount={balance} 
+        showBalance={showBalance} 
+        hideBalance={hideBalance} 
+        addBalance = {addBalance}/>
         <CoinList coinData={coinData} handleRefresh={handleRefresh} showBalance={showBalance} />
+        
       </Div>
     );
 

@@ -31,7 +31,8 @@ export default function AccountBalance(props) {
             <Section>
              {balance}
              
-               <Button onClick={props.hideBalance}>{buttonText}</Button> 
+               <Button onClick={props.hideBalance}>{buttonText}</Button>
+               <Button onClick={props.addBalance}>Deposit</Button> 
         
             </Section>
         )
